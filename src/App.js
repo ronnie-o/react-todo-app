@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import "./App.css";
 
+// store > reducer(로직) > store > view > action > store
+
 class TodoItem extends Component {
   render() {
     var item = this.props.item;
