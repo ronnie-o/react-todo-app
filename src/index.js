@@ -2,10 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux'; // for store
+import {Router, Route, IndexRoute, hashHistory} from 'react-router'
 import './index.css';
 import "./App.css";
 import {todoReducer} from './Reducers'
 import App from './App'
+import Detail from './Detail'
 
 // store > reducer(로직) > store > view > action > store
 // Reducers.js
@@ -28,7 +30,12 @@ var store = createStore(todoReducer);
 // Provider : App 컴포넌트와 store를 연결
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <Router history={hashHistory}>
+      <Route path='/' component={App}>
+        <IndexRoute component={App} />
+        <Route path=':id' component={Detail} />
+      </Route>
+    </Router>
   </Provider>,
   document.getElementById('root')
 );
